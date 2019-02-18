@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body{
+  height: 100%;
+}
+
+body {
+  font: 14px/1.5 Arial;
+}
+
+ul, li {
+  list-style: none;
+}

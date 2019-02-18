@@ -1,0 +1,44 @@
+.carousel {
+  border: 1px solid saddlebrown;
+  position: relative;
+  width: 400px;
+  height: 200px;
+  margin: 20px auto 0;
+}
+
+.carousel .iconfont {
+  position: absolute;
+  top: calc(50% - 24px);
+  font-size: 32px;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.carousel .iconfont:hover,
+.carousel .bullet li:hover {
+  opacity: 1;
+}
+
+.carousel .iconfont.icon-arrow-left {
+  left: 4px;
+}
+
+.carousel .iconfont.icon-arrow-right {
+  right: 4px;
+}
+
+.carousel .bullet {
+  position: absolute;
+  display: flex;
+  bottom: 4px;
+  right: calc(50% - 56px);
+}
+
+.carousel .bullet li{
+  border: 1px solid red;
+  border-radius: 20px;
+  margin-left: 8px;
+  padding: 5px 15px;
+  opacity: 0.6;
+  cursor: pointer;
+}
