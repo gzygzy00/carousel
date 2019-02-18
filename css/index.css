@@ -6,10 +6,20 @@
   margin: 20px auto 0;
 }
 
+.carousel .img-ct {
+  display: flex;
+}
+
+.carousel .img-ct li a img {
+  width: 400px;
+  height: 200px;
+}
+
 .carousel .iconfont {
   position: absolute;
   top: calc(50% - 24px);
   font-size: 32px;
+  color: #fff;
   opacity: 0.6;
   cursor: pointer;
 }
@@ -31,7 +41,7 @@
   position: absolute;
   display: flex;
   bottom: 4px;
-  right: calc(50% - 56px);
+  right: calc(50% - 76px);
 }
 
 .carousel .bullet li {
