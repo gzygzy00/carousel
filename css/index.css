@@ -4,11 +4,13 @@
   width: 400px;
   height: 200px;
   margin: 20px auto 0;
+  background-color: #eee;
+  overflow: hidden;
 }
 
 .carousel .img-ct {
+  position: absolute;
   display: flex;
-  overflow: hidden;
 }
 
 .carousel .img-ct li a img {
@@ -50,7 +52,7 @@
   border-radius: 20px;
   margin-left: 8px;
   padding: 5px 15px;
-  opacity: 0.8;
+  opacity: 0.7;
   cursor: pointer;
 }
 
