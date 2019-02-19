@@ -29,57 +29,70 @@ Carousel.prototype = {
     var _this = this
     this.$leftBtn.on('click', function () {
       console.log("left");
-      _this.playLeft()
+      _this.playLeft(1)
     })
     this.$rightBtn.on('click', function () {
       console.log("right");
-      _this.playRight()
+      _this.playRight(1)
     })
     this.$bullets.on('click', function () {
       console.log($(this).index());
+      var index = $(this).index()
+      if (index < _this.index) {
+        _this.playLeft(_this.index - index)
+      } else {
+        _this.playRight(index - _this.index)
+      }
     })
   },
 
-  playLeft: function () {
-    console.log("playleft");
+  playRight: function (len) {
+    console.log("R");
     var _this = this
     if (!this.isPlay) {
       this.isPlay = 1
       console.log("playright");
       this.$imgCt.animate({
-        left: "-=" + this.imgWidth
+        left: "-=" + this.imgWidth * len
       }, function () {
-        _this.index++
+        _this.index += len
         if (_this.index === _this.imgCount) {
           _this.index = 0
           _this.$imgCt.css('left', -_this.imgWidth)
         }
         _this.isPlay = 0
+        _this.setBullet()
       })
     }
 
   },
 
-  playRight: function () {
+  playLeft: function (len) {
     var _this = this
     if (!this.isPlay) {
       this.isPlay = 1
-      console.log("playright");
+      console.log("L");
       this.$imgCt.animate({
-        left: "+=" + this.imgWidth
+        left: "+=" + this.imgWidth * len
       }, function () {
-        _this.index--
+        _this.index -= len
         if (_this.index < 0) {
           _this.index = _this.imgCount - 1
           _this.$imgCt.css('left', -_this.imgWidth * _this.imgCount)
         }
         _this.isPlay = 0
+        _this.setBullet()
       })
     }
+  },
+
+  setBullet: function () {
+    this.$bullets.eq(this.index).addClass('active')
+        .siblings().removeClass('active')
   }
 }
 
 var a = new Carousel($('.carousel').eq(0));
-// new Carousel($('.carousel').eq(1));
+var b = new Carousel($('.carousel').eq(1));
 
 console.log("ok");
