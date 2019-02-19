@@ -8,6 +8,7 @@
 
 .carousel .img-ct {
   display: flex;
+  overflow: hidden;
 }
 
 .carousel .img-ct li a img {
