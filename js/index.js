@@ -15,7 +15,7 @@ Carousel.prototype = {
     this.imgWidth = this.$imgs.width()
 
     this.index = 0
-    this.isPlay = 0
+    this.isAnimate = false
 
     this.$imgCt.append(this.$imgs.first().clone())
     this.$imgCt.prepend(this.$imgs.last().clone())
@@ -28,15 +28,15 @@ Carousel.prototype = {
   bind: function () {
     var _this = this
     this.$leftBtn.on('click', function () {
-      console.log("left");
+      // console.log("left");
       _this.playLeft(1)
     })
     this.$rightBtn.on('click', function () {
-      console.log("right");
+      // console.log("right");
       _this.playRight(1)
     })
     this.$bullets.on('click', function () {
-      console.log($(this).index());
+      // console.log($(this).index());
       var index = $(this).index()
       if (index < _this.index) {
         _this.playLeft(_this.index - index)
@@ -47,11 +47,11 @@ Carousel.prototype = {
   },
 
   playRight: function (len) {
-    console.log("R");
+    // console.log("R");
     var _this = this
-    if (!this.isPlay) {
-      this.isPlay = 1
-      console.log("playright");
+    if (!this.isAnimate) {
+      this.isAnimate = true
+      // console.log("playright");
       this.$imgCt.animate({
         left: "-=" + this.imgWidth * len
       }, function () {
@@ -60,7 +60,7 @@ Carousel.prototype = {
           _this.index = 0
           _this.$imgCt.css('left', -_this.imgWidth)
         }
-        _this.isPlay = 0
+        _this.isAnimate = false
         _this.setBullet()
       })
     }
@@ -69,9 +69,9 @@ Carousel.prototype = {
 
   playLeft: function (len) {
     var _this = this
-    if (!this.isPlay) {
-      this.isPlay = 1
-      console.log("L");
+    if (this.isAnimate) return
+      this.isAnimate = true
+      // console.log("L");
       this.$imgCt.animate({
         left: "+=" + this.imgWidth * len
       }, function () {
@@ -80,19 +80,32 @@ Carousel.prototype = {
           _this.index = _this.imgCount - 1
           _this.$imgCt.css('left', -_this.imgWidth * _this.imgCount)
         }
-        _this.isPlay = 0
+        _this.isAnimate = false
         _this.setBullet()
       })
-    }
   },
 
   setBullet: function () {
     this.$bullets.eq(this.index).addClass('active')
         .siblings().removeClass('active')
+  },
+
+  autoPlay: function(){
+    var _this = this
+    this.autoClock = setInterval(function(){
+      _this.playRight(1)
+    }, 1500)
+  },
+
+  stopPlay: function(){
+    clearInterval(this.autoClock)
   }
 }
 
 var a = new Carousel($('.carousel').eq(0));
 var b = new Carousel($('.carousel').eq(1));
+var c = new Carousel($('.carousel').eq(2));
+
+c.autoPlay()
 
 console.log("ok");
